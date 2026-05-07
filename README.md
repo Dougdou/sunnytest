@@ -14,7 +14,7 @@ Site landing pour **Sunnywestern**, serveur RedM RP français en whitelist.
 ## Structure
 
 ```
-Sunnywestern.html   ← entrée HTML
+index.html          ← entrée HTML
 app.jsx             ← root React + panneau Tweaks
 hero.jsx            ← section hero (parallax)
 sections.jsx        ← Lore, Features, Galerie, Connexion, Règles, FAQ, Roadmap, etc.
@@ -25,11 +25,11 @@ styles.css          ← thème complet
 
 ## Lancer en local
 
-Ouvre `Sunnywestern.html` dans un navigateur (ou via un serveur static type `python -m http.server`).
+Ouvre `index.html` dans un navigateur (ou via un serveur static type `python -m http.server`).
 
 ## Déploiement
 
-C'est un site statique : push les fichiers tels quels. Sur GitHub Pages, renomme `Sunnywestern.html` en `index.html` (ou crée un alias).
+C'est un site statique : push les fichiers tels quels. Compatible direct avec Vercel, Netlify, Cloudflare Pages, GitHub Pages.
 
 ---
 
