@@ -9,9 +9,6 @@ function Hero({ discord, tagline }) {
   const sunRef = useRefHero();
 
   useEffectHero(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
-
     let raf = 0;
     let pending = false;
     const apply = () => {
