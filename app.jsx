@@ -1,4 +1,5 @@
 /* global React, ReactDOM, Hero, Nav, LiveStrip, Lore, Features, Carousel, Testimonials, Staff, Roadmap, FinalCTA, Footer, HowToConnect, Rules, FAQ, useReveal,
+   AdminPanel, useAuth,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakSlider, TweakColor, TweakToggle */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -24,7 +25,28 @@ const FONTS = {
   Bree: "'Bree Serif', serif",
 };
 
+function useHashRoute() {
+  const [hash, setHash] = React.useState(() => window.location.hash);
+  React.useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  return hash;
+}
+
 function App() {
+  const route = useHashRoute();
+  const auth = useAuth();
+  const isAdminRoute = route === '#admin';
+
+  // Si on est sur #admin sans etre admin, rebascule vers l'accueil
+  React.useEffect(() => {
+    if (isAdminRoute && (!auth.user || !auth.user.isAdmin)) {
+      window.location.hash = '';
+    }
+  }, [isAdminRoute, auth.user]);
+
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   useReveal();
 
@@ -69,6 +91,10 @@ function App() {
   }, [t.showRider]);
 
   const DISCORD = 'https://discord.gg/SvvKumHSA';
+
+  if (isAdminRoute && auth.user?.isAdmin) {
+    return <AdminPanel />;
+  }
 
   return (
     <>

@@ -1,4 +1,4 @@
-/* global React, Icon */
+/* global React, Icon, LoginButton */
 const { useState: useS, useEffect: useE, useRef: useR } = React;
 
 /* ===== Live counter strip ===== */
@@ -557,10 +557,13 @@ function Nav({ discord }) {
   ];
   return (
     <nav className={`nav ${scrolled ? 'scrolled' : ''} ${open ? 'open' : ''}`}>
-      <a href="#top" className="nav-brand" onClick={() => setOpen(false)}>
-        <span className="star"><Icon.Star size={20} color="#c9a36a"/></span>
-        SUNNYWESTERN
-      </a>
+      <div className="nav-left">
+        <LoginButton />
+        <a href="#top" className="nav-brand" onClick={() => setOpen(false)}>
+          <span className="star"><Icon.Star size={20} color="#c9a36a"/></span>
+          SUNNYWESTERN
+        </a>
+      </div>
       <ul className="nav-links">
         {links.map(l => (
           <li key={l.href}><a href={l.href} onClick={() => setOpen(false)}>{l.label}</a></li>
